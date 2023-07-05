@@ -1,5 +1,6 @@
 import { BrowserRouter } from "react-router-dom";
 import RoutesApp from "./routes/main";
+import  AuthProvider  from './contexts/auth'
 
 
 function App() {
@@ -8,7 +9,9 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <RoutesApp/>
+        <AuthProvider>
+          <RoutesApp/>
+        </AuthProvider>
       </BrowserRouter>
       
     </>

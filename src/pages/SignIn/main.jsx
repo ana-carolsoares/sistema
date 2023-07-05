@@ -1,12 +1,21 @@
 import './signin.css'
 import logo from '../../assets/logo.png';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-
+import { AuthContext } from '../../contexts/auth';
 
 export default function SignIn(){
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
+
+    const {signIn} = useContext(AuthContext);
+
+    function handleSignIn(e){
+        e.preventDefault();
+        if(email !== '' && senha !== ''){
+            signIn(email, senha);
+        }
+    }
 
     return(
         <div className='contaiber-centre'>
@@ -15,7 +24,7 @@ export default function SignIn(){
                     <img src={logo} alt="logo do sistema de chamados" />
                 </div>
 
-                <form>
+                <form onSubmit={handleSignIn}>
                     <h1>Entrar</h1>
                     <input 
                     type="text" 
