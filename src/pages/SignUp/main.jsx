@@ -1,6 +1,7 @@
 import logo from '../../assets/logo.png';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../contexts/auth';
 
 
 export default function SignUp(){
@@ -8,10 +9,12 @@ export default function SignUp(){
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
 
+    const {signUp} = useContext(AuthContext);
+
     function handleSubmit(e){
         e.preventDefault();
         if( nome !== '' && email !== '' && senha !== ''){
-            alert ("Fazer cadastro")
+            signUp(email, senha, nome)
         }
     }
 
